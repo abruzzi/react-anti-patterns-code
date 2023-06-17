@@ -1,21 +1,13 @@
 import React from "react";
 import "./App.css";
 import ThemeProvider from "./ch2/ThemeProvider";
-import Article from "./ch2/Article";
+import MyShop from "./ch4/MyShop";
 
 function App() {
   return (
     <div className="app">
       <ThemeProvider>
-        <Article
-          heading="Think in components"
-          summary="It's important to change your mindset when coding with React."
-        />
-
-        <Article
-          heading="Define custom hooks"
-          summary="Hooks are a great way to share state logic."
-        />
+        <MyShop />
       </ThemeProvider>
     </div>
   );
