@@ -2,6 +2,8 @@ import { Product } from "./types";
 import ProductList from "./ProductList";
 import Cart from "./Cart";
 import { useState } from "react";
+import Page from "./Page";
+import PageProvider from "./PageProvider";
 
 const products: Product[] = [
   {
@@ -28,10 +30,22 @@ const MyShop = () => {
   };
 
   return (
-    <div className="my-shop">
-      <ProductList products={products} addToCart={addToItems} />
-      <Cart cartItems={items} removeFromCart={removeFromItems} />
-    </div>
+    <PageProvider
+      config={{
+        title: "My application",
+        subtitle: "Product page",
+        sidebarLinks: ["Home", "About", "Contact"],
+        onToggleHeader: () => console.log("toggle header"),
+        onToggleSidebar: () => console.log(`toggle sidebar`),
+      }}
+    >
+      <Page>
+        <div className="my-shop">
+          <ProductList products={products} addToCart={addToItems} />
+          <Cart cartItems={items} removeFromCart={removeFromItems} />
+        </div>
+      </Page>
+    </PageProvider>
   );
 };
 
