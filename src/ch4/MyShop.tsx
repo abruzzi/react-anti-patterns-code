@@ -1,9 +1,8 @@
 import { Product } from "./types";
 import ProductList from "./ProductList";
 import Cart from "./Cart";
-import { useState } from "react";
-import Page from "./Page";
-import PageProvider from "./PageProvider";
+import React, { useState } from "react";
+import { Page, Header, Sidebar } from "./Page";
 
 const products: Product[] = [
   {
@@ -30,22 +29,27 @@ const MyShop = () => {
   };
 
   return (
-    <PageProvider
-      config={{
-        title: "My application",
-        subtitle: "Product page",
-        sidebarLinks: ["Home", "About", "Contact"],
-        onToggleHeader: () => console.log("toggle header"),
-        onToggleSidebar: () => console.log(`toggle sidebar`),
-      }}
-    >
-      <Page>
+    <Page
+      header={
+        <Header
+          title="My application"
+          subtitle="Product page"
+          onClick={() => console.log("toggle header")}
+        />
+      }
+      sidebar={
+        <Sidebar
+          links={["Home", "About", "Contact"]}
+          onLinkClick={() => console.log(`toggle sidebar`)}
+        />
+      }
+      main={
         <div className="my-shop">
           <ProductList products={products} addToCart={addToItems} />
           <Cart cartItems={items} removeFromCart={removeFromItems} />
         </div>
-      </Page>
-    </PageProvider>
+      }
+    />
   );
 };
 

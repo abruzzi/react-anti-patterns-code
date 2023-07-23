@@ -59,25 +59,4 @@ function Page({ header, sidebar, main }: PageProps) {
   );
 }
 
-const MyPage = () => {
-  return (
-    <Page
-      header={
-        <Header
-          title="My application"
-          subtitle="Product page"
-          onClick={() => console.log("toggle header")}
-        />
-      }
-      sidebar={
-        <Sidebar
-          links={["Home", "About", "Contact"]}
-          onLinkClick={() => console.log(`toggle sidebar`)}
-        />
-      }
-      main={<Main isLoading={false} content={<div>The main</div>} />}
-    />
-  );
-};
-
-export default Page;
+export { Header, Sidebar, Main, Page };
