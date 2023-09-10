@@ -6,7 +6,29 @@ export type Item = {
   description: string;
 };
 
-const SearchBox = ({ onSearch }: { onSearch: (keyword: string) => void }) => {
+const ListItem = ({ item }: { item: Item }) => {
+  return (
+    <li>
+      <h2>{item.name}</h2>
+      <p>{item.description}</p>
+    </li>
+  );
+};
+
+const List = ({ items }: { items: Item[] }) => {
+  return (
+    <section data-testid="searchable-list">
+      <ul>
+        {items.map((item) => (
+          <ListItem item={item} />
+        ))}
+      </ul>
+      <footer>Total items: {items.length}</footer>
+    </section>
+  );
+};
+
+const SearchInput = ({ onSearch }: { onSearch: (keyword: string) => void }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
   };
@@ -17,18 +39,14 @@ const SearchBox = ({ onSearch }: { onSearch: (keyword: string) => void }) => {
 const SearchableList = ({ items }: { items: Item[] }) => {
   const [filteredItems, setFilteredItems] = useState<Item[]>(items);
 
-  const handleSearch = (keyword: string) => {
+  const onSearch = (keyword: string) => {
     setFilteredItems(items.filter((item) => item.name.includes(keyword)));
   };
 
   return (
     <div>
-      <SearchBox onSearch={handleSearch} />
-      <ul>
-        {filteredItems.map((item, index) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul>
+      <SearchInput onSearch={onSearch} />
+      <List items={filteredItems} />
     </div>
   );
 };
