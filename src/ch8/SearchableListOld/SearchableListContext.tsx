@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { Item } from "./types";
 
 type SearchableListContextType = {
   onSearch: (keyword: string) => void;
-  onItemClicked: (id: string) => void;
+  onItemClicked: (item: Item) => void;
 };
 
 const noop = () => {};

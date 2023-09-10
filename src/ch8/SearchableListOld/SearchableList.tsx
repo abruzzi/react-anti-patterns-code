@@ -1,14 +1,12 @@
-import React, { ChangeEvent, useState } from "react";
-
-export type Item = {
-  id: string;
-  name: string;
-  description: string;
-};
+import React, { ChangeEvent, useContext, useState } from "react";
+import { SearchableListContext } from "./SearchableListContext";
+import { Item } from "./types";
 
 const ListItem = ({ item }: { item: Item }) => {
+  const { onItemClicked } = useContext(SearchableListContext);
+
   return (
-    <li>
+    <li onClick={() => onItemClicked(item)}>
       <h2>{item.name}</h2>
       <p>{item.description}</p>
     </li>
@@ -29,25 +27,38 @@ const List = ({ items }: { items: Item[] }) => {
 };
 
 const SearchInput = ({ onSearch }: { onSearch: (keyword: string) => void }) => {
+  const { onSearch: providedOnSearch } = useContext(SearchableListContext);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
+    providedOnSearch(e.target.value);
   };
 
   return <input type="text" onChange={handleChange} />;
 };
 
-const SearchableList = ({ items }: { items: Item[] }) => {
+type SearchableListProps = {
+  items: Item[];
+  onSearch: (keyword: string) => void;
+  onItemClicked: (item: Item) => void;
+};
+
+const SearchableList = ({
+  items,
+  onSearch,
+  onItemClicked,
+}: SearchableListProps) => {
   const [filteredItems, setFilteredItems] = useState<Item[]>(items);
 
-  const onSearch = (keyword: string) => {
+  const handleSearch = (keyword: string) => {
     setFilteredItems(items.filter((item) => item.name.includes(keyword)));
   };
 
   return (
-    <div>
-      <SearchInput onSearch={onSearch} />
+    <SearchableListContext.Provider value={{ onSearch, onItemClicked }}>
+      <SearchInput onSearch={handleSearch} />
       <List items={filteredItems} />
-    </div>
+    </SearchableListContext.Provider>
   );
 };
 
