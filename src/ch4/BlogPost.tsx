@@ -17,6 +17,7 @@ const useFetchPost = (id: string): PostType => {
   const [post, setPost] = useState<PostType>(EmptyBlogPost);
 
   useEffect(() => {
+    // @ts-ignore
     fetchPostById(id).then((post) => setPost(post));
   }, [id]);
 
