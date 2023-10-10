@@ -7,7 +7,7 @@ export type ButtonProps = {
 };
 
 export interface Toggleable {
-  state: boolean;
+  isOpen: boolean;
   toggle: () => void;
 }
 

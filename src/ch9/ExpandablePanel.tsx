@@ -2,7 +2,7 @@ import React from "react";
 import { PanelProps } from "./types";
 
 export const ExpandablePanel = ({
-  state,
+  isOpen,
   toggle,
   heading,
   content,
@@ -10,7 +10,7 @@ export const ExpandablePanel = ({
   return (
     <section>
       <header onClick={toggle}>{heading}</header>
-      {state && <main>{content}</main>}
+      {isOpen && <main>{content}</main>}
     </section>
   );
 };

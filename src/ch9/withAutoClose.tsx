@@ -16,7 +16,7 @@ const withAutoClose =
     return (
       <Component
         {...props}
-        state={show}
+        isOpen={show}
         toggle={() => setShow((show) => !show)}
       />
     );

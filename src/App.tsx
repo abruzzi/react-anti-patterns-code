@@ -87,6 +87,28 @@ const AnalyticsButtonX = withAnalyticsX<ButtonProps>(Button);
 
 const AnalyticsExpandablePanel = withAutoClose(ExpandablePanel);
 
+const withAuthorization = (Component: React.FC): React.FC => {
+  return (props: any) => {
+    const isAuthorized = checkAuthorization(); // Assume this function checks authorization
+    return isAuthorized ? <Component {...props} /> : <Login />;
+  };
+};
+
+const ProtectedComponent: React.FC = () => {
+  return <div>Protected Content</div>;
+};
+
+const Login: React.FC = () => {
+  return <div>Please Login</div>;
+};
+
+const AuthorizedComponent = withAuthorization(ProtectedComponent);
+
+function checkAuthorization(): boolean {
+  // Replace with your authorization logic
+  return false;
+}
+
 function App() {
   const onItemClicked = (id: string) => console.log(id);
 
@@ -126,6 +148,8 @@ function App() {
       <ShoppingCartProvider>
         <ShoppingApplicationNew />
       </ShoppingCartProvider>
+
+      <AuthorizedComponent />
     </div>
   );
 }
