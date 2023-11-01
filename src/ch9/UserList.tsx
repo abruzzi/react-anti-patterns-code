@@ -1,4 +1,4 @@
-import withSideEffect from "./withSideEffect";
+import withSideEffect from "../ch10/hooks/withSideEffect";
 
 const UserList = ({ data }: { data: any[] }) => {
   return (

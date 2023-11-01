@@ -1,10 +1,10 @@
-// const report = (content: string) => {
-//   const header = "=== Header ===";
-//   const footer = "=== Footer ===";
-//
-//   return [header, content, footer].join("\n");
-// };
-//
+// report function without additional transformer
+const staticReport = (content: string) => {
+  const header = "=== Header ===";
+  const footer = "=== Footer ===";
+
+  return [header, content, footer].join("\n");
+};
 
 const report = (
   content: string,
@@ -18,3 +18,5 @@ const report = (
 
 console.log(report("hello world"));
 console.log(report("hello world", (s) => s.toUpperCase()));
+
+export { report, staticReport };

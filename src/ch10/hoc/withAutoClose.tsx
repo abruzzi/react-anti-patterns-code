@@ -1,10 +1,13 @@
-import { PanelProps } from "./types";
 import React, { useEffect, useState } from "react";
+import { Toggleable } from "./types";
 
 const withAutoClose =
-  (Component: React.FC<PanelProps>, duration: number = 2000) =>
-  (props: PanelProps) => {
-    const [show, setShow] = useState<boolean>(false);
+  <T extends Partial<Toggleable>>(
+    Component: React.FC<T>,
+    duration: number = 2000
+  ) =>
+  (props: T) => {
+    const [show, setShow] = useState<boolean>(true);
 
     useEffect(() => {
       if (show) {
