@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Section } from "../Section";
+import { Section } from "../component/Section";
 
 describe("Section", () => {
   it("renders a section with heading and content", () => {

@@ -1,26 +1,12 @@
-import Tooltip from "@xui/tooltip";
-
 type AvatarProps = {
   name?: string;
   url: string;
 };
 
-const Avatar = ({ name, url }: AvatarProps) => {
-  if (name) {
-    return (
-      <Tooltip content={name}>
-        <div className="rounded">
-          <img src={url} alt={name} />
-        </div>
-      </Tooltip>
-    );
-  }
-  return (
-    <div className="rounded">
-      <img src={url} alt="" />
-    </div>
-  );
-};
-
+const Avatar = ({ name = "", url }: AvatarProps) => (
+  <div className="rounded">
+    <img src={url} alt={name} title={name} />
+  </div>
+);
 
 export default Avatar;

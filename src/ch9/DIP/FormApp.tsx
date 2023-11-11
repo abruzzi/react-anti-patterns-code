@@ -1,9 +1,9 @@
 import InteractionContext from "./InteractionContext";
-import { useMemo } from "react";
 import Button from "./AnalyticsButton";
 
 const FormApp = () => {
   const context = {
+    // @ts-ignore
     measure: (e, t) => {
       //send event and timestamp to remote
       console.log(`sending to remote server  ${e}: ${t}`);

@@ -1,6 +1,6 @@
 import React from "react";
 import {act, render, screen} from "@testing-library/react";
-import { TermsAndConditions } from "../TermsAndConditions";
+import { TermsAndConditions } from "../component/TermsAndConditions";
 import userEvent from "@testing-library/user-event";
 
 describe('Terms and Conditions', () => {

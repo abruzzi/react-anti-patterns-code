@@ -1,3 +1,5 @@
+import {ButtonProps} from "../types";
+
 const Button = ({ onClick: provided, name, ...rest }: ButtonProps) => {
   const onClick = (e) => {
     //emit an event to the analytic server

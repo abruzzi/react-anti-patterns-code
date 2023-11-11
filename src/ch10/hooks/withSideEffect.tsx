@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { useService } from "./useService";
-import fetchPostById from "../../ch4/fetchPostById";
+import fetchPostById from "../../ch4/single-responsibilty-principle/fetchPostById";
 
 const DefaultLoading = () => <div>Loading...</div>;
 const DefaultError = () => <div>Error...</div>;

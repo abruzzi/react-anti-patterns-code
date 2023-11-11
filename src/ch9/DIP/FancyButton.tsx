@@ -1,10 +1,14 @@
 import { Button } from "xui/button";
 
+type FancyButtonProps = {
+  onClick: () => void;
+}
+
 const FancyButton = ({
   onClick: originalOnClick,
   ...rest
 }: FancyButtonProps) => {
-  const onClick = (e) => {
+  const onClick = (e: any) => {
     //emit an event to the analytic server
     console.log('sending analytics event to a remote server');
     return originalOnClick(e);

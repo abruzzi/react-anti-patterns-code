@@ -1,12 +1,5 @@
-interface Notification {
-  send(message: string, type: string): void;
-}
-
-class EmailNotification implements Notification {
-  send(message: string, type: string) {
-    console.log(`Sending email with message: ${message}, type: ${type}`);
-  }
-}
+import { Notification } from "./Notification";
+import { EmailNotification } from "./EmailNotification";
 
 class Application {
   private notifier: Notification;
@@ -25,11 +18,5 @@ const app = new Application(new EmailNotification());
 app.process();
 
 
-
-class SMSNotification {
-  send(message: string, type: string) {
-    console.log(`Sending SMS with message: ${message}, type: ${type}`);
-  }
-}
 
 export default Application;
