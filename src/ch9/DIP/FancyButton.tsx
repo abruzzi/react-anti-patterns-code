@@ -1,7 +1,8 @@
+// @ts-ignore
 import { Button } from "xui/button";
 
 type FancyButtonProps = {
-  onClick: () => void;
+  onClick: (e: any) => void;
 }
 
 const FancyButton = ({

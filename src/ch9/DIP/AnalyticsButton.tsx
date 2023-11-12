@@ -4,15 +4,20 @@ import InteractionContext, {
   InteractionMeasurement
 } from "./InteractionContext";
 
+interface ButtonType {
+  name: string;
+  onClick: (e: any) => void;
+  children: React.ReactNode
+}
+
 const Button = ({ name, onClick: providedOnClick, children }: ButtonType) => {
   const interactionContext = useContext<InteractionMeasurement | null>(
     InteractionContext
   );
 
   const handleClick = useCallback(
-    (e) => {
-      interactionContext &&
-      interactionContext.measure(name, e.timeStamp);
+    (e: any) => {
+      interactionContext && interactionContext.measure(name, e.timeStamp);
       providedOnClick(e);
     },
     [providedOnClick, interactionContext, name]
