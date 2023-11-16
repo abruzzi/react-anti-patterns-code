@@ -1,13 +1,13 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useCallback } from "react";
 import "./Dropdown.css";
-import { Item } from "../types";
+import { Item } from "./types";
 import { useDropdown } from "./useDropdown";
 import { DropdownMenu } from "./DropdownMenu";
 import { useService } from "./useService";
-import Loading from "../Loading/Loading";
-import Error from "../Error/Error";
+import Loading from "./Loading/Loading";
+import Error from "./Error/Error";
 import { fetchUsers } from "./fetchUsers";
-import { Trigger } from "../Trigger";
+import { Trigger } from "./Trigger";
 
 const Dropdown = () => {
   const { data, loading, error } = useService(fetchUsers);
@@ -22,7 +22,7 @@ const Dropdown = () => {
     getAriaAttributes,
   } = useDropdown<Item>(data || []);
 
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     if (loading) return <Loading />;
     if (error) return <Error />;
     if (data) {
@@ -35,7 +35,7 @@ const Dropdown = () => {
       );
     }
     return null;
-  };
+  }, [data, error, loading, selectedIndex, updateSelectedItem]);
 
   return (
     <div

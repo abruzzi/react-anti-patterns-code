@@ -1,4 +1,4 @@
-import { Item } from "../types";
+import { Item } from "./types";
 import React from "react";
 
 const MenuItem = ({ item }: { item: Item }) => {
@@ -27,7 +27,7 @@ export const DropdownMenu = ({
         <div
           role="option"
           aria-selected={index === selectedIndex}
-          key={index}
+          key={item.id}
           onClick={() => updateSelectedItem(item)}
           className={`item-container ${
             index === selectedIndex ? "highlighted" : ""
